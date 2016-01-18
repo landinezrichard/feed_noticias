@@ -1,10 +1,38 @@
 @import "nib"
 @import "normalize.styl"
 @import url('https://fonts.googleapis.com/css?family=Montserrat')
+@import "iconfonts.styl"
+
+$dark_cobalt = #394C5F
+$naranja_header = #FF6654
+$white = #F4F4F4
+$gray = #C9C9C9
+/*
+*	$black = #212121
+*	
+*/
 
 html
 	font-size 16px
 	font-family 'Montserrat', sans-serif
 	
 body
-	background red
+	background $dark_cobalt
+	
+/*
+* Estilos HEADER
+*/
+
+@import "../components/Header/estilos.styl"	
+
+/*
+* Estilos MENU
+*/
+
+@import "../components/MainMenu/estilos.styl"
+
+/*
+* Estilos MAIN CONTENT
+*/
+
+@import "../components/MainContent/estilos.styl"	

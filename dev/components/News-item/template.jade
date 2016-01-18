@@ -1,0 +1,11 @@
+article.News-item(id=''+data.id)
+	h2.News-itemTitle
+		|	#{data.title}
+	div.News-itemFull
+		figure.News-imageContainer
+			img.News-image(src=''+data.image, alt=''+data.title)
+		div.News-right
+			h3.News-itemTitle
+				|	#{data.title}
+			p.News-description
+				|	#{data.content}
