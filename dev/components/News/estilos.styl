@@ -1,0 +1,64 @@
+/*
+* Componente NEWS
+*/
+
+.News
+	&-item
+		padding 0 .5em 0
+		width 100%
+		
+	&-itemFull
+		height 0
+		overflow hidden
+		transition height 5s ease-in-out 5s
+		
+		&--show
+			height auto
+			transition height 5s ease-in-out 5s		
+	
+	&-itemLight
+	&-itemFull
+		background-color $white
+		display flex
+		align-items center
+		flex-flow row nowrap		
+		margin-bottom .5em	
+		
+	&-itemFull > &-imageContainer
+		width 30%
+		
+	&-imageContainer
+		margin 0
+		padding .5em				
+		
+	&-image
+		width 100%
+		
+	&-image--circle
+		width 70px
+		border-radius 50%		
+	
+	&-imageContainer		
+	&-imageContainer + .News-itemTitle
+		display inline-block
+		
+	&-itemTitle
+		text-align left
+		
+	&-description
+		text-align justify
+		
+	&-itemTitle
+	&-description
+		padding 0 .5em
+		
+	&-right
+		width 70%
+		margin-right .5em
+		
+/*Tablet*/
+
+// @media (min-width: 768px)
+// 	.News
+// 		&-itemLight
+// 			display none

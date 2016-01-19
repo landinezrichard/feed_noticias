@@ -1,6 +1,9 @@
 article.News-item(id=''+data.id)
-	h2.News-itemTitle
-		|	#{data.title}
+	div.News-itemLight
+		figure.News-imageContainer
+			img.News-image--circle(src=''+data.image, alt=''+data.title)
+		h4.News-itemTitle
+			|	#{data.title}
 	div.News-itemFull
 		figure.News-imageContainer
 			img.News-image(src=''+data.image, alt=''+data.title)

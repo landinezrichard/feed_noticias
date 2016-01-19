@@ -81,7 +81,7 @@ gulp.task('build-css', function(){
   .pipe(groupQuerys())
   .pipe(nano())
   .on('error', gutil.log)
-  .pipe(gulp.dest(paths.css.dest))
+  .pipe(gulp.dest(paths.css.dest));
 });
 
 /*
@@ -93,7 +93,7 @@ gulp.task('build-html', function() {
       pretty: true
   }))
   .on('error', gutil.log)
-  .pipe(gulp.dest(paths.html.dest))
+  .pipe(gulp.dest(paths.html.dest));
 });
 
 /*
@@ -111,7 +111,7 @@ gulp.task('build-js', function() {
   .pipe(buffer())
   .pipe(uglify())//minificamos js
   .on('error', gutil.log)
-  .pipe(gulp.dest(paths.js.dest))//en donde va a estar el archivo destino
+  .pipe(gulp.dest(paths.js.dest));//en donde va a estar el archivo destino
 });
 
 /*
@@ -125,7 +125,7 @@ gulp.task('image-min', function(){
     progressive: true,
     interlaced: true
   }))
-  .pipe(gulp.dest(paths.images.dest))
+  .pipe(gulp.dest(paths.images.dest));
 });
 
 /*
