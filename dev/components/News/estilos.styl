@@ -7,15 +7,18 @@
 		padding 0 .5em 0
 		width 100%
 		
-	&-itemFull
-		height 0
-		overflow hidden
-		transition height 5s ease-in-out 5s
-		
-		&--show
-			height auto
-			transition height 5s ease-in-out 5s		
-	
+		&:nth-child(odd)
+			.News-image--circle
+				border 5px solid $turquesa
+				
+		&:nth-child(even)
+			.News-image--circle
+				border 5px solid $lime
+				
+	&-itemLight
+		&:hover
+			cursor pointer
+
 	&-itemLight
 	&-itemFull
 		background-color $white
@@ -58,7 +61,10 @@
 		
 /*Tablet*/
 
-// @media (min-width: 768px)
-// 	.News
-// 		&-itemLight
-// 			display none
+@media (min-width: 768px)
+	.News-item
+		&:nth-child(odd)
+			.News-itemFull > .News-imageContainer
+				order 2
+			.News-right
+				order 1	
