@@ -8,6 +8,8 @@
 	const loader = require('./components/loader');
 
 	const url = '/news_mock.json';
+	
+	const url1 = '/news_mock.json';
 
 	/*Listeners*/	
 	document.addEventListener('DOMContentLoaded', onDOMload);
@@ -33,29 +35,26 @@
 		});
 	}
 
-	function animateNewsItems () {		
-		$('.News').find('.News-item').first().show( 'fast', function showNext() {
-			$( this ).next( '.News-item' ).show( 'fast', showNext );
-		});
-	}
-
 	function loadContent (event) {
 		event.preventDefault();
 		let accion = this.getAttribute("href");
 		accion = accion.split("#").pop();
 		showMenu.close();
-		if(accion === "home"){
-			console.log('pidiendo datos');			
+
+		if(accion === "noticias"){
+			console.log('pidiendo datos');
 			getData.init(url);
-			// animateNewsItems();
+		}
+		else{
+			//pedimos datos al JSON
+			getData.init(url1);
 		}
 	}
 
 	function onDOMload() {		
 		loader.hideLoader();
 		firstAnimation ();
-		showMenu.init();
-		// getData.init();
+		showMenu.init();		
 		showNews.init();
 
 		$('.MainMenu-list').on("click","a",loadContent);		
