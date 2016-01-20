@@ -3,18 +3,21 @@
 	const $ = require('jquery');
 	const showMenu = require('./components/MainMenu');
 	const showNews = require('./components/News');
-	const getData  = require('./lib/getData.js');
-	// const Easing   = require('./lib/jquery_easing-1-3.js');
+	const getData  = require('./lib/getData.js');	
 	const Easing   = require("jquery-easing");
-	// const renderNews = require('./lib/renderNews.js');
+	const loader = require('./components/loader');
 
+	const url = '/news_mock.json';
+
+	/*Listeners*/	
 	document.addEventListener('DOMContentLoaded', onDOMload);
-
 	$(document).on('ready',onReady);
+	
+
+	/*Funciones*/
 
 	function onReady (){
-		//eliminamos el scroll de la pagina
-		$('body').css({'overflow-y':'hidden'});		
+		loader.showLoader();		
 	}
 
 	function firstAnimation () {
@@ -22,24 +25,40 @@
 			'top':['0','easeOutBounce']
 		},
 		2000, function () {
-			$('.Header').css({'position':'fixed'});
-			// $('.MainContent').css({'margin-top':'2.3rem'});
+			$('.Header').css({
+				'position':'fixed',
+				'border-radius': 0
+			});
+			$('.MainContent').css({'border-radius':0});
 		});
 	}
 
-	function onDOMload() {
-		$('.Loader-container').fadeOut(1000,function(){
-			//eliminamos la capa de precarga
-			$(this).remove();
-			//permitimos scroll
-			$('body').css({'overflow-y':'auto'});
+	function animateNewsItems () {		
+		$('.News').find('.News-item').first().show( 'fast', function showNext() {
+			$( this ).next( '.News-item' ).show( 'fast', showNext );
 		});
+	}
 
+	function loadContent (event) {
+		event.preventDefault();
+		let accion = this.getAttribute("href");
+		accion = accion.split("#").pop();
+		showMenu.close();
+		if(accion === "home"){
+			console.log('pidiendo datos');			
+			getData.init(url);
+			// animateNewsItems();
+		}
+	}
+
+	function onDOMload() {		
+		loader.hideLoader();
 		firstAnimation ();
 		showMenu.init();
-		getData.init();
+		// getData.init();
 		showNews.init();
-		// renderNews.init();
+
+		$('.MainMenu-list').on("click","a",loadContent);		
 	}
 
 }())

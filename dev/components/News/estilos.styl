@@ -4,8 +4,8 @@
 
 .News
 	&-item
+		display none
 		padding 0 .5em 0
-		width 100%
 		
 		&:nth-child(odd)
 			.News-image--circle
@@ -24,7 +24,7 @@
 		background-color $white
 		display flex
 		align-items center
-		flex-flow row nowrap		
+		flex-flow row nowrap
 		margin-bottom .5em	
 		
 	&-itemFull > &-imageContainer
@@ -32,16 +32,16 @@
 		
 	&-imageContainer
 		margin 0
-		padding .5em				
+		padding .5em
 		
 	&-image
 		width 100%
 		
 	&-image--circle
 		width 70px
-		border-radius 50%		
+		border-radius 50%
 	
-	&-imageContainer		
+	&-imageContainer
 	&-imageContainer + .News-itemTitle
 		display inline-block
 		
@@ -58,7 +58,8 @@
 	&-right
 		width 70%
 		margin-right .5em
-		
+		display inline-block
+
 /*Tablet*/
 
 @media (min-width: 768px)
