@@ -1,25 +1,14 @@
 var showNews = (function () {
 	/* Dependencias*/
-	const $ = require('jquery');
-	const newsList = $('.News');
-	const clase    = 'News-itemFull--show';
+	const $ = require('jquery');	
 	let newsItem   = $('.News-itemFull'); 
-
-	// function suscribeEvents () {
-	// 	newsList.on('click','.News-item', function () {
-	// 		$(this).find('.News-itemFull').toggleClass(clase);
-	// 	});
-	// }
+	const newsList = $('.News');	
 
 	function suscribeEvents () {
 		newsItem.css('display','none');
-		// newsList.on('click','.News-item', function () {
 		
-		// 	$(this).find('.News-itemFull').slideToggle('slow');
-		// 	
-		// });
-
-		$('.News-itemLight').on('click', function () {
+		// $('.News-itemLight').on('click', function () {
+		newsList.on('click','.News-itemLight', function () {
 			if($(this).next().is(':visible')){
 				$(this).next().slideUp();
 			}
@@ -28,7 +17,6 @@ var showNews = (function () {
 				$(this).next().slideDown();
 			}
 		});
-
 
 	}
 

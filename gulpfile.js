@@ -49,6 +49,10 @@ var paths = {
   fonts:{
     watch : ['dev/assets/**/*.eot','dev/assets/**/*.svg','dev/assets/**/*.ttf','dev/assets/**/*.woff'],
     dest  : 'public/'//se guardan en public/fonts/
+  },
+  json:{
+    main : 'dev/assets/news_mock.json',
+    dest : 'public/'
   }
 };
 
@@ -138,6 +142,15 @@ gulp.task('copy-fonts', function(){
 });
 
 /*
+* Tarea Copiar JSON
+*/
+
+gulp.task('copy-json', function(){
+  return gulp.src(paths.json.main)
+    .pipe(gulp.dest(paths.json.dest));
+});
+
+/*
 * Tarea incrustar "embebed" el CSS y JS
 */
 
@@ -170,9 +183,9 @@ gulp.task('watch', function(){
 gulp.task('build', ['build-css','build-html','build-js']);
 
 /*
-* Preparar assets (imagenes, fonts)
+* Preparar assets (imagenes, fonts, json)
 */
-gulp.task('assets',['image-min','copy-fonts']);
+gulp.task('assets',['image-min','copy-fonts','copy-json']);
 
 /*
 * Tarea por defecto

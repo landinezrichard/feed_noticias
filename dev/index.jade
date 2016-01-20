@@ -7,7 +7,8 @@ head
 		|	Feed Noticias
 	link(rel="stylesheet", type="text/css", href="css/estilos.css")
 body
-	include ./components/Header/template.jade
+	include ./components/loader/template.jade	
 	div.MainContent
+		include ./components/Header/template.jade
 		include ./components/News/template.jade
 	script(type="text/javascript", src="js/app.js")

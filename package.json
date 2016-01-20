@@ -25,6 +25,7 @@
     "gulp-util": "^3.0.7",
     "gulp-webserver": "^0.9.1",
     "jadeify": "^4.6.0",
+    "jquery-easing": "0.0.1",
     "nib": "^1.1.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
