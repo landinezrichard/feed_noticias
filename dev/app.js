@@ -4,11 +4,18 @@
 	const showMenu = require('./components/MainMenu');
 	const showNews = require('./components/News');
 	const getData  = require('./lib/getData.js');	
-	const Easing   = require("jquery-easing");
+	const Easing   = require('jquery-easing');
 	const loader = require('./components/loader');
-
+/*
+*	Para pedir los datos a la api, 
+	cambiar el valor de la url aquí:
+*/
 	const url = '/news_mock.json';
-	
+
+	/*
+	Este valor no cambiarlo, 
+	es para obtener los datos del archivo JSON
+	*/
 	const url1 = '/news_mock.json';
 
 	/*Listeners*/	

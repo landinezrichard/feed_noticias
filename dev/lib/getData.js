@@ -2,9 +2,10 @@ var getData = (function () {
 	/* Dependencias*/
 	const $ = require('jquery');
 	const loader = require('../components/loader');
-	const Easing   = require("jquery-easing");	
+	// const Easing = require('jquery-easing');
+	const showNews = require('../components/News');	
 
-	const news_template = require('../components/News-item/template.jade');
+	// const news_template = require('../components/News-item/template.jade');
 
 	function getJson (url) {
 
@@ -18,7 +19,7 @@ var getData = (function () {
 				let cache = JSON.stringify(datos);
 				/*almacenamos los datos en cache*/
 				localStorage[url] = cache;
-				renderNews(datos);
+				showNews.renderNews(datos);
 			}
 		});
 	}
@@ -30,7 +31,7 @@ var getData = (function () {
 			/*Convertimos el string a JSON*/
 			datos = JSON.parse(datos);
 			//render
-			renderNews(datos);			
+			showNews.renderNews(datos);			
 		}else{
 			// peticion
 			getJson(url);
@@ -40,25 +41,25 @@ var getData = (function () {
 		}
 	}
 
-	function renderNews(datos){
-		loader.hideLoader();//puede dar error?
-		console.log(datos);
-		let contenido_html = '';
-		for(var i=0; i< datos.length; i++){
-			contenido_html += news_template(datos[i]);
-		}
-		$(contenido_html).find('.News-itemFull').css('display','none');
-		// alert("Dato: " + JSON.stringify(datos));
-		$('.News').html(contenido_html);
-		$('.News').find('.News-itemFull').css('display','none');
-		animateNewsItems();
-	}
+	// function renderNews(datos){
+	// 	loader.hideLoader();
+	// 	console.log(datos);
+	// 	let contenido_html = '';
+	// 	for(var i=0; i< datos.length; i++){
+	// 		contenido_html += news_template(datos[i]);
+	// 	}
+	// 	$(contenido_html).find('.News-itemFull').css('display','none');
+	// 	// alert("Dato: " + JSON.stringify(datos));
+	// 	$('.News').html(contenido_html);
+	// 	$('.News').find('.News-itemFull').css('display','none');
+	// 	animateNewsItems();
+	// }
 
-	function animateNewsItems () {		
-		$('.News').find('.News-item').first().show( 600,'easeOutBounce', function showNext() {
-			$( this ).next( '.News-item' ).show( 600,'easeOutBounce', showNext );
-		});
-	}
+	// function animateNewsItems () {		
+	// 	$('.News').find('.News-item').first().show( 600,'easeOutBounce', function showNext() {
+	// 		$( this ).next( '.News-item' ).show( 600,'easeOutBounce', showNext );
+	// 	});
+	// }
 
 
 	return {
