@@ -3,7 +3,7 @@
 	const $ = require('jquery');
 	const showMenu = require('./components/MainMenu');
 	const showNews = require('./components/News');
-	const getData  = require('./lib/getData.js');	
+	const getData  = require('./lib/getData.js');
 	const Easing   = require('jquery-easing');
 	const loader = require('./components/loader');
 /*
@@ -18,15 +18,15 @@
 	*/
 	const url1 = '/news_mock.json';
 
-	/*Listeners*/	
+	/*Listeners*/
 	document.addEventListener('DOMContentLoaded', onDOMload);
 	$(document).on('ready',onReady);
-	
+
 
 	/*Funciones*/
 
 	function onReady (){
-		loader.showLoader();		
+		loader.showLoader();
 	}
 
 	function firstAnimation () {
@@ -58,13 +58,13 @@
 		}
 	}
 
-	function onDOMload() {		
+	function onDOMload() {
 		loader.hideLoader();
 		firstAnimation ();
-		showMenu.init();		
+		showMenu.init();
 		showNews.init();
 
-		$('.MainMenu-list').on("click","a",loadContent);		
+		$('.MainMenu-list').on("click","a",loadContent);
 	}
 
 }())

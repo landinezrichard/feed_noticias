@@ -12,8 +12,7 @@ var gulp    = require('gulp'),
   jadeify   = require('jadeify'),
   babelify  = require('babelify'),
   buffer    = require('vinyl-buffer'),
-  source    = require('vinyl-source-stream'),  
-  imageop   = require('gulp-image-optimization'),
+  source    = require('vinyl-source-stream'),
   gutil     = require('gulp-util'),
   groupQuerys= require('gulp-group-css-media-queries'),
   smoosher  = require('gulp-smoosher'),
@@ -42,10 +41,6 @@ var paths = {
     watch : 'dev/**/*.js',
     dest  : 'public/js/'
   },
-  images:{
-    watch : ['dev/assets/**/*.png','dev/assets/**/*.jpg','dev/assets/**/*.gif','dev/assets/**/*.jpeg'],
-    dest  : 'public/' //se guardan en public/img/
-  },
   fonts:{
     watch : ['dev/assets/**/*.eot','dev/assets/**/*.svg','dev/assets/**/*.ttf','dev/assets/**/*.woff'],
     dest  : 'public/'//se guardan en public/fonts/
@@ -67,8 +62,8 @@ gulp.task('server', function(){
     livereload: true
   }))
 
-  var ip = getIpAddress();
-  console.log("Server running on:"+ip);
+  var ip = getIpAddress();  
+  console.log(gutil.colors.bgGreen("Server running on:"+ip+":8081"));  
 });
 
 /*
@@ -76,7 +71,7 @@ gulp.task('server', function(){
 */
 
 gulp.task('build-css', function(){
-	gulp.src(paths.css.main)
+	return gulp.src(paths.css.main)
   .pipe(stylus({
     use: nib(),
     'include css': true
@@ -92,7 +87,7 @@ gulp.task('build-css', function(){
 * Tarea build-html
 */
 gulp.task('build-html', function() {
-  gulp.src(paths.html.main)
+  return gulp.src(paths.html.main)
   .pipe(jade({
       pretty: true
   }))
@@ -119,20 +114,6 @@ gulp.task('build-js', function() {
 });
 
 /*
-* Tarea Minificar y Optimizar imagenes
-*/
-
-gulp.task('image-min', function(){
-  gulp.src(paths.images.watch)
-  .pipe(imageop({
-    optimizationLevel: 7,
-    progressive: true,
-    interlaced: true
-  }))
-  .pipe(gulp.dest(paths.images.dest));
-});
-
-/*
 * Tarea Copiar fuentes
 */
 
@@ -154,8 +135,8 @@ gulp.task('copy-json', function(){
 * Tarea incrustar "embebed" el CSS y JS
 */
 
-gulp.task('inline', function(){
-  gulp.src(paths.html.inline)
+gulp.task('inline', ['build'], function(){
+  return gulp.src(paths.html.inline)
   .pipe(smoosher())
   .pipe(rename({
     suffix : '-min',
@@ -173,7 +154,7 @@ gulp.task('watch', function(){
   gulp.watch(paths.css.watch, ['build-css']);
   gulp.watch(paths.html.watch, ['build-html']);
   gulp.watch(paths.js.watch, ['build-js']);
-  gulp.watch(paths.images.watch, ['image-min']);
+  gulp.watch(paths.html.inline, ['inline']); 
 });
 
 /*
@@ -183,15 +164,15 @@ gulp.task('watch', function(){
 gulp.task('build', ['build-css','build-html','build-js']);
 
 /*
-* Preparar assets (imagenes, fonts, json)
+* Preparar assets (fonts, json)
 */
-gulp.task('assets',['image-min','copy-fonts','copy-json']);
+gulp.task('assets',['copy-fonts','copy-json']);
 
 /*
 * Tarea por defecto
 */
 
-gulp.task('default', ['server','watch','build']);
+gulp.task('default', ['server','watch','build','assets','inline']);
 
 
 /*

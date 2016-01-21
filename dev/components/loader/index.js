@@ -1,13 +1,13 @@
 var loader = (function () {
 	/* Dependencias*/
 	const $ = require('jquery');
-	const $body = $('body');
 	const loaderTemplate = require('./template.jade');
+	const $body = $('body');
 
 	function showLoader (){
 		$body.append(loaderTemplate);
 		//eliminamos el scroll de la pagina
-		$body.css({'overflow-y':'hidden'});		
+		$body.css({'overflow-y':'hidden'});
 	}
 
 	function hideLoader () {
@@ -21,7 +21,7 @@ var loader = (function () {
 
 	return {
 		showLoader : showLoader,
-		hideLoader : hideLoader		
+		hideLoader : hideLoader
 	};
 
 })();

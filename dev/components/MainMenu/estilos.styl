@@ -2,8 +2,8 @@
 
 .MainMenu
 	background-color $naranja_header
-	line-height 1.2em	
-	
+	line-height 1.2em
+
 	&-button
 		border 0
 		border-radius 5px
@@ -11,7 +11,7 @@
 		order 1
 		padding 0
 		margin-left 1rem
-	
+
 	&-list
 		margin 0
 		padding 0
@@ -19,7 +19,7 @@
 		height 0
 		overflow hidden
 		transition height .3s ease
-		
+
 		&--show
 			height auto
 	&-item
@@ -28,22 +28,23 @@
 			background-color $white
 			.MainMenu-link
 				color $naranja_header
-		
+
 	&-link
 		text-decoration none
 		color $white
 		width 100%
 		padding 1.5em
 		display block
-		
+
 .icon-menu
 	font-size 2em
-			
+
 /*Tablet*/
 
 @media (min-width: 768px)
-	.MainMenu		
-		line-height 5em		
+	.MainMenu
+		line-height 5em
+		margin-right 1.5rem
 		&-button
 			display none
 			
