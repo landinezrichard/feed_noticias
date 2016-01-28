@@ -54,16 +54,16 @@ var paths = {
 /*
 * Run server
 */
-gulp.task('server', function(){  
-  gulp.src('./public')
+gulp.task('server', function(){ 
+  var ip = getIpAddress();
+  console.log(gutil.colors.bgGreen("Server running on:"+ip+":8081")); 
+  return gulp.src('./public')
   .pipe(webserver({
     host:'0.0.0.0',
     port: '8081',
     livereload: true
   }))
-
-  var ip = getIpAddress();  
-  console.log(gutil.colors.bgGreen("Server running on:"+ip+":8081"));  
+  
 });
 
 /*
